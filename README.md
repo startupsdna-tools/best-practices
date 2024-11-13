@@ -1,2 +1,3 @@
-# discussions
-Host repository for discussions
+# Best Practices
+
+- [Git best practices](./git.md)
