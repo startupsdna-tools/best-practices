@@ -5,14 +5,16 @@
 ### Long-lived branches
 
 - `main` - main branch, contains the latest stable version of the code;
-- `dev` - development branch, contains the latest development version of the code;
+- `dev`, `prod` - environment branches, contains the latest version of the code for that environment;
 
 ### Short-lived branches
 
 - `feature/*` - branch for new feature development;
+- `update/*` - branch for updates on existing feature or function;
 - `bugfix/*` - branch for bug fixing;
 - `hotfix/*` - branch for urgent bug fixing in released version;
 - `refactor/*` - branch for code refactoring;
+- `release/*` - branch for release preparation;
 
 ### Tags
 
@@ -20,86 +22,16 @@
 
 ## Workflows
 
-### Simplified workflow
+### Trunk-Based Workflow
 
-At early stages of a new product it makes sense to use Trunk-bases workflow.
+Trunk-based workflow is a Git strategy where all developers work on a single branch, 
+often called "trunk" or "main." Changes are small and integrated frequently.
 
-- each merge request to main runs CI pipelines for linting and testing;
-- each closed merge request or commits to main runs CD pipeline to build and deploy to testing server;
+Read more: [Trunk-Based Workflow](./git/trunkbased-workflow.md)
 
-```mermaid
-%%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
-gitGraph
-	commit
-	commit
-	branch feature/auth
-	commit
-	commit
-	checkout main
-	commit
-	branch feature/todo-list
-	commit
-	commit
-	checkout main
-	merge feature/auth
-	merge feature/todo-list
-	branch bugfix/auth-error
-	commit
-	checkout main
-	merge bugfix/auth-error tag: "v1.0"
-```
+### Gitflow Workflow
 
-### Development workflow
+The **Gitflow Workflow** is a popular branching model designed to facilitate the management of complex development processes,
+particularly for projects involving versioned releases and active collaboration.
 
-Used in order to separate development version from released version.
-
-- each merge request to `dev` runs CI pipelines for linting and testing;
-- each closed merge request or commits to `dev` runs CD pipeline to build and deploy to testing server;
-
-```mermaid
-%%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
-gitGraph
-	commit tag: "v1.0"
-	branch dev
-	commit
-	branch feature/new-feature-1
-	commit
-	commit
-	checkout dev
-	commit
-	branch feature/new-feature-2
-	commit
-	commit
-	checkout dev
-	merge feature/new-feature-1
-	merge feature/new-feature-2
-	checkout main
-	merge dev tag: "v2.0"
-```
-
-### Hot-fix workflow
-
-Used when it is required to make an urgent fix to a released version. 
-After closing hotfix branch, it is merged back to main and dev branches.
-
-```mermaid
-%%{init: { 'logLevel': 'debug', 'theme': 'base' } }%%
-gitGraph
-    commit tag: "v1.0"
-    checkout main
-    branch hotfix/payment-error
-    commit
-    commit
-    checkout main
-    branch dev
-    commit
-    commit
-    commit
-    checkout main
-    merge hotfix/payment-error tag: "v1.1"
-    checkout dev
-    merge hotfix/payment-error
-    checkout dev
-    commit
-    commit
-```
+Read more: [Gitflow Workflow](./git/gitflow-workflow.md)
