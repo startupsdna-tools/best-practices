@@ -19,3 +19,8 @@ Covered topics include:
 - Docker Practices
 
 Read more: [Node.js Best Practices](https://github.com/goldbergyoni/nodebestpractices)
+
+## Application Architecture
+
+Backend applicaiton architecture diagrams:
+- https://www.tldraw.com/r/Vtt5r8uW_CCKUJYeiRvRY
