@@ -1,4 +1,4 @@
-**App Specification Guide**
+# App Specification Guide
 
 This guide outlines how to structure a comprehensive specification document for your application. It is designed to help you provide technical and functional context that can be used with AI tools and development teams for accurate implementation.
 
